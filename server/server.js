@@ -19,7 +19,7 @@ app.get("/api/movies", (request, response) => {
 app.get("/api/movies/:id", (request, response) => {
   const movies = JSON.parse(getAllMovies());
   const movie = movies.find((movie)=>movie.id === Number(request.params.id));
-  response.json(movies);
+  response.json(movie);
 });
 
 // Express port-switching logic
