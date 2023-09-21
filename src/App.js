@@ -31,6 +31,7 @@ function App() {
         <p>{JSON.stringify(movies)}</p>
         
       </header>
+      
     </div>
   );
 }

@@ -1,8 +1,9 @@
 const express = require("express");
 const path = require("path");
-
+const {getAllMovies} = require("./movies.js");
 const app = express();
 
+console.log("Page test********** ", getAllMovies());
 // A test route to make sure the server is up.
 app.get("/api/ping", (request, response) => {
   console.log("❇️ Received GET request to /api/ping");
@@ -11,8 +12,14 @@ app.get("/api/ping", (request, response) => {
 
 // A mock route to return some data.
 app.get("/api/movies", (request, response) => {
-  console.log("❇️ Received GET request to /api/movies");
-  response.json({ data: [{ id: 1, name: '1' }, { id: 2, name: '2' }] });
+  const movies = JSON.parse(getAllMovies());
+  response.json(movies);
+});
+
+app.get("/api/movies/:id", (request, response) => {
+  const movies = JSON.parse(getAllMovies());
+  const movie = movies.find((movie)=>movie.id === Number(request.params.id));
+  response.json(movies);
 });
 
 // Express port-switching logic
