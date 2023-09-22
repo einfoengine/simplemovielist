@@ -4,7 +4,6 @@ import './App.css';
 
 import Movies from './pages/Movies';
 import Movie from './pages/Movie';
-import axios from 'axios';
 
 function App() {
   return (

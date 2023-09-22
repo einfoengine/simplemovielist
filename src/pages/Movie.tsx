@@ -33,7 +33,7 @@ const Movie: React.FC = () => {
         <h3 className="px-mov-title">{movie?.title}</h3>
         <span className="px-id">{movie?.id}</span>
       </div>
-      <div className="px-mov-desc">{movie.overview}</div>
+      <div className="px-mov-desc">{movie?.overview}</div>
     </div>
   );
 };

@@ -1,10 +1,11 @@
 module.exports = {
-    theme: {
-      extend: {},
-    },
-    variants: {},
-    plugins: [
-        require('tailwindcss'),
-        require('autoprefixer'),
-    ],
-  };
+  content: ["./src/**/*.{html,js}"],
+  theme: {
+    extend: {},
+  },
+  variants: {},
+  plugins: [
+      require('tailwindcss'),
+      require('autoprefixer'),
+  ],
+};
