@@ -1,6 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, } from 'react-router-dom';
+import Breadcrumb from '../components/breadcrumb';
+import MovieDetails from '../components/movieDetails';
+import Footer from '../components/footer';
 
 const Movie: React.FC = () => {
   const [movie, setMovie] = useState();
@@ -17,25 +20,34 @@ const Movie: React.FC = () => {
     };
 
     getMovie();
-  }, [id]);
+  }, []);
 
   return (
-    <div className="px-page">
-      {console.log("Movie ", movie)}
-      <div className="px-top">
-        <h2 className="px-page-title">Movie Details</h2>
-      </div>
-      <div className="px-preview">
-        <span className="px-status">{movie?.status}</span>
-      </div>
-      <div className="px-mov-name">
-        <span className="px-tag-line">{movie?.tagline}</span>
-        <h3 className="px-mov-title">{movie?.title}</h3>
-        <span className="px-id">{movie?.id}</span>
-      </div>
-      <div className="px-mov-desc">{movie?.overview}</div>
+    
+    <div className='px-page px-movies'>
+      <section className="px-section px-top">
+        <div className="px-container">
+          <div className="px-position px-top-a">
+          <Breadcrumb text={'/Movies/Movie Details'}/>
+          </div>
+        </div>
+      </section>
+      <section className="px-section px-content">
+        <div className="px-container">
+          <div className="px-position px-content-a">
+            <MovieDetails movie={movie}/>
+          </div>
+        </div>
+      </section>
+      <section className="px-section px-content px-footer">
+        <div className="px-container">
+          <div className="px-position px-content-a">
+            <Footer/>
+          </div>
+        </div>
+      </section>
     </div>
-  );
-};
+  )
+}
 
 export default Movie;

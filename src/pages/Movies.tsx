@@ -1,46 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+import Movies from '../components/movies'; 
+import Breadcrumb from '../components/breadcrumb';
+import Footer from '../components/footer';
 
-interface MoviesProps {
-  movies: {
-    id: number;
-    title: string;
-    tagline: string;
-    vote_average: number;
-  }[];
-}
-
-const Movies: React.FC<MoviesProps> = ({ movies }) => {
-  return (
-    <div className="px-container px-movies">
-      <header>
-        <h2>Movie list page</h2>
-      </header>
-      
-      <div className='px-content'>
-        <table>
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Tagline</th>
-              <th>Vote Average</th>
-            </tr>
-          </thead>
-          <tbody>
-            {movies.map(movie => (
-              <tr key={movie.id}>
-                <Link to={`/movies/${movie.id}`}><td>{movie.title}</td></Link>
-                <td>{movie.tagline}</td>
-                <td>{movie.vote_average}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
-}
 
 const fetchData = async () => {
   try {
@@ -56,14 +19,40 @@ const MoviesContainer: React.FC = () => {
   const [movies, setMovies] = useState<any[]>([]);
 
   useEffect(() => {
-    async function getData() {
+    const getData = async () => {
       const data = await fetchData();
       setMovies(data);
     }
     getData();
   }, []);
 
-  return <Movies movies={movies} />;
+  if(movies){
+    return (
+      <div className='px-page px-movies'>
+        <section className="px-section px-top">
+          <div className="px-container">
+            <div className="px-position px-top-a">
+              <Breadcrumb text={'/Movies'}/>
+            </div>
+          </div>
+        </section>
+        <section className="px-section px-content">
+          <div className="px-container">
+            <div className="px-position px-content-a">
+              <Movies movies={movies} />
+            </div>
+          </div>
+        </section>
+        <section className="px-section px-content">
+          <div className="px-container">
+            <div className="px-position px-content-a">
+              <Footer/>
+            </div>
+          </div>
+        </section>
+      </div>
+    )
+  }
 };
 
 export default MoviesContainer;
